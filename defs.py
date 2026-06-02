@@ -23,6 +23,7 @@ def create_new_book():
             duplicated = False
         else:
             duplicated = True
+            break
 
     if not duplicated:
 
@@ -115,57 +116,71 @@ def borrow_book(book_id):
     for book in book_list:
 
         if book_id == book["ID"]:
-
-            if book["Available"]:
-                
-                line()
-
-                print(f"You sucessfully borrowed {book["Title"]} book!")
-                book["Available"] = False
-
-                line()
-                
-            elif not book["Available"]:
-
-                line()
-
-                print(f"{book["Title"]} cannot be borrowed!")
-
-                line()
-            
+            found = True
+            break
         else:
+            found = False
+
+    if found:
+
+        if book["Available"]:
+            
+            line()
+
+            print(f"You sucessfully borrowed {book["Title"]} book!")
+            book["Available"] = False
+
+            line()
+            
+        elif not book["Available"]:
 
             line()
 
-            print("Invalid ID!")
+            print(f"{book["Title"]} cannot be borrowed!")
 
             line()
+            
+    else:
+
+        line()
+
+        print("Invalid ID!")
+
+        line()
 
 def return_book(book_id):
 
     for book in book_list:
 
         if book_id == book["ID"]:
-
-            if not book["Available"]:
-                
-                line()
-
-                print(f"{book["Title"]} has returned to library!")
-                book["Available"] = True
-
-            elif book["Available"]:
-                
-                line()
-
-                print(f"{book["Title"]} is already on library!")
-
-                line()
-        
+            found = True
+            break
         else:
+            found = False
+
+    if found:
+
+        if not book["Available"]:
+            
+            line()
+
+            print(f"{book["Title"]} has returned to library!")
+            book["Available"] = True
 
             line()
 
-            print("Invalid ID!")
+        else:
+            
+            line()
+
+            print(f"{book["Title"]} is already on library!")
 
             line()
+
+    else:
+
+        line()
+
+        print("Invalid ID!")
+
+        line()
