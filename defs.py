@@ -15,7 +15,26 @@ def create_new_book():
         "Available": True
     }
 
-    book_list.append(book)
+    duplicated = False
+
+    for book_ in book_list:
+
+        if book["ID"] != book_["ID"]:
+            duplicated = False
+        else:
+            duplicated = True
+
+    if not duplicated:
+
+        book_list.append(book)
+
+    else: 
+
+        line()
+
+        print("Duplicated ID!")
+
+        create_new_book()
 
     print("\nBook successfully created!")
 
@@ -28,7 +47,7 @@ ID: {book["ID"]}
 Title: {book["Title"]}
 Author: {book["Author"]}
 Year: {book["Year"]}
-Available: {book["Available"]}
+Available: {"Yes" if book["Available"] else "No"}
 """)
 
 def show_book_list():
@@ -93,38 +112,60 @@ def remove_by_id(book_id):
 
 def borrow_book(book_id):
 
-    for i, book in enumerate(book_list):
+    for book in book_list:
 
         if book_id == book["ID"]:
 
-            if book["Available"] == True:
+            if book["Available"]:
                 
                 line()
 
                 print(f"You sucessfully borrowed {book["Title"]} book!")
                 book["Available"] = False
+
+                line()
                 
-            elif book["Available"] == False:
+            elif not book["Available"]:
 
                 line()
 
                 print(f"{book["Title"]} cannot be borrowed!")
 
+                line()
+            
+        else:
+
+            line()
+
+            print("Invalid ID!")
+
+            line()
+
 def return_book(book_id):
 
-    for i, book in enumerate(book_list):
+    for book in book_list:
 
         if book_id == book["ID"]:
 
-            if book["Available"] == False:
+            if not book["Available"]:
                 
                 line()
 
                 print(f"{book["Title"]} has returned to library!")
                 book["Available"] = True
 
-            elif book["Available"] == True:
+            elif book["Available"]:
                 
                 line()
 
                 print(f"{book["Title"]} is already on library!")
+
+                line()
+        
+        else:
+
+            line()
+
+            print("Invalid ID!")
+
+            line()
