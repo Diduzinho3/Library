@@ -10,8 +10,6 @@ from defs import (
     line
 )
 
-load_books()
-
 program = True
 
 while program:
@@ -29,29 +27,35 @@ Choose: """).upper()
     if choose == "1":
 
         create_new_book()
+        save_books()
 
     elif choose == "2":
 
         show_book_list()
+        save_books()
 
     elif choose == "3":
 
         search_title()
+        save_books()
 
     elif choose == "4":
         
         user_id = int(input("Book ID: "))
         remove_by_id(user_id)
+        save_books()
     
     elif choose == "5":
 
         user_id = int(input("Book ID: "))
         borrow_book(user_id)
+        save_books()
 
     elif choose == "6":
 
         user_id = int(input("Book ID: "))
         return_book(user_id)
+        save_books()
 
     elif choose in ["L", "LE", "LEA", "LEAV", "LEAVE"]:
 
@@ -60,6 +64,7 @@ Choose: """).upper()
         program = False
 
         print("Finishing program!")
+        save_books()
 
         line()
 
