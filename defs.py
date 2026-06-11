@@ -38,6 +38,7 @@ def create_new_book():
     if not duplicated:
 
         book_list.append(book)
+        save_books()
 
     else: 
 
@@ -115,6 +116,8 @@ def remove_by_id(book_id):
 
             line()
 
+            save_books()
+
             break
 
     if found == False:
@@ -139,6 +142,8 @@ def borrow_book(book_id):
 
             print(f"You sucessfully borrowed {book["Title"]} book!")
             book["Available"] = False
+
+            save_books()
 
             line()
             
@@ -176,6 +181,8 @@ def return_book(book_id):
 
             print(f"{book["Title"]} has returned to library!")
             book["Available"] = True
+
+            save_books()
 
             line()
 
