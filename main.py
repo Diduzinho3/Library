@@ -5,8 +5,12 @@ from defs import (
     remove_by_id,
     borrow_book,
     return_book,
+    load_books,
+    save_books,
     line
 )
+
+load_books()
 
 program = True
 
@@ -66,3 +70,5 @@ Choose: """).upper()
         print("Error! Choose one of the choices!")
 
         line()
+
+save_books()

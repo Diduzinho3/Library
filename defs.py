@@ -1,4 +1,14 @@
-book_list = []
+import json
+
+def load_books():
+    with open("data.json", "r") as archive:
+        return json.load(archive)
+    
+book_list = load_books()
+
+def save_books():
+    with open("data.json", "w") as archive:
+        json.dump(book_list, archive)
 
 def line():
     print("\n---------- // ----------\n")
