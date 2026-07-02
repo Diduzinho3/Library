@@ -1,5 +1,12 @@
 import json
 
+# SEPARAÇÃO #
+
+def line():
+    print("\n---------- // ----------\n")
+
+# JSON
+
 def load_books():
     with open("data.json", "r") as archive:
         return json.load(archive)
@@ -8,10 +15,9 @@ book_list = load_books()
 
 def save_books():
     with open("data.json", "w") as archive:
-        json.dump(book_list, archive)
+        json.dump(book_list, archive, indent = 4)
 
-def line():
-    print("\n---------- // ----------\n")
+# MODIFICAÇÃO DO LIVRO #
 
 def create_new_book():
 
@@ -51,52 +57,6 @@ def create_new_book():
     print("\nBook successfully created!")
 
     line()
-
-def show_book(book):
-
-    print(f"""
-ID: {book["ID"]}
-Title: {book["Title"]}
-Author: {book["Author"]}
-Year: {book["Year"]}
-Available: {"Yes" if book["Available"] else "No"}
-""")
-
-def show_book_list():
-
-    line()
-
-    if len(book_list) > 0:
-
-        for book in book_list:
-            show_book(book)
-            line()
-
-    else:
-        print("Didn't have any registered book.")
-        line()
-
-def search_title():
-
-    title = input("Book Title: ")
-
-    line()
-
-    found = False
-
-    for book in book_list:
-
-        if title.lower() in book["Title"].lower():
-
-            show_book(book)
-
-            found = True
-
-            line()
-
-    if found == False:
-        print("Book not found.")
-        line()
 
 def remove_by_id(book_id):
 
@@ -201,3 +161,90 @@ def return_book(book_id):
         print("Invalid ID!")
 
         line()
+
+# MOSTRAR LIVRO #
+
+def show_book(book):
+
+    print(f"""
+ID: {book["ID"]}
+Title: {book["Title"]}
+Author: {book["Author"]}
+Year: {book["Year"]}
+Available: {"Yes" if book["Available"] else "No"}
+""")
+
+def show_book_list():
+
+    line()
+
+    if len(book_list) > 0:
+
+        for book in book_list:
+            show_book(book)
+            line()
+
+    else:
+        print("Didn't have any registered book.")
+        line()
+
+def search_title():
+
+    title = input("Book Title: ")
+
+    line()
+
+    found = False
+
+    for book in book_list:
+
+        if title.lower() in book["Title"].lower():
+
+            show_book(book)
+
+            found = True
+
+            line()
+
+    if found == False:
+        print("Book not found.")
+        line()
+
+# USUÁRIO #
+
+def load_users():
+    with open("user.json", "r") as archive:
+        return json.load(archive)
+    
+users = load_users()
+
+def save_users():
+    with open("user.json", "w") as archive:
+        json.dump(users, archive, indent = 4)
+
+def create_user(user):
+
+    with open("user.json", "r") as archive:
+
+        temp_data = json.load(archive)
+
+        if temp_data:
+
+            new_id = temp_data[-1]["ID"] + 1
+
+            user_data = {
+                "ID": new_id,
+                "User": user
+            }
+        
+        elif not temp_data:
+
+            new_id = 1
+
+            user_data = {
+                "ID": new_id,
+                "User": user
+            }
+
+    users.append(user_data)
+    save_users()

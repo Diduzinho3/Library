@@ -1,1 +1,9 @@
-[]
+[
+    {
+        "ID": 1,
+        "Title": "Harry Potter",
+        "Author": "J K Rowlling",
+        "Year": 2000,
+        "Available": true
+    }
+]

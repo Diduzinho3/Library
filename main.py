@@ -5,7 +5,7 @@ from defs import (
     remove_by_id,
     borrow_book,
     return_book,
-    save_books,
+    create_user,
     line
 )
 
@@ -19,6 +19,7 @@ while program:
 4 - Remove by ID
 5 - Borrow Book
 6 - Return Book
+7 - Create User
 L - Finish Program
 
 Choose: """).upper()
@@ -49,6 +50,11 @@ Choose: """).upper()
 
         user_id = int(input("Book ID: "))
         return_book(user_id)
+
+    elif choose == "7":
+
+        user = str(input("Name: "))
+        create_user(user)
 
     elif choose in ["L", "LE", "LEA", "LEAV", "LEAVE"]:
 
