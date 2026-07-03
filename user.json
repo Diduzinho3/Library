@@ -2,5 +2,9 @@
     {
         "ID": 1,
         "User": "Eduardo"
+    },
+    {
+        "ID": 2,
+        "User": "Jonathan"
     }
 ]

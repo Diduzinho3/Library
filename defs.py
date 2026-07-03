@@ -248,3 +248,24 @@ def create_user(user):
 
     users.append(user_data)
     save_users()
+
+def show_user(user):
+
+    print(f"""
+ID: {user["ID"]}
+User: {user["User"]}
+""")
+
+def user_list():
+
+    line()
+
+    if len(users) > 0:
+
+        for user in users:
+            show_user(user)
+            line()
+        
+    else:
+
+        print("Didn't have any user registred.")

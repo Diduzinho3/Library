@@ -6,6 +6,7 @@ from defs import (
     borrow_book,
     return_book,
     create_user,
+    user_list,
     line
 )
 
@@ -20,6 +21,7 @@ while program:
 5 - Borrow Book
 6 - Return Book
 7 - Create User
+8 - User List
 L - Finish Program
 
 Choose: """).upper()
@@ -55,6 +57,10 @@ Choose: """).upper()
 
         user = str(input("Name: "))
         create_user(user)
+
+    elif choose == "8":
+
+        user_list()
 
     elif choose in ["L", "LE", "LEA", "LEAV", "LEAVE"]:
 
